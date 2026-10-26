@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Polityka Prywatności — Plansy</title>
+  <meta name="description" content="Polityka Prywatności aplikacji mobilnej Plansy dla systemu iOS. Dowiedz się, jak dbamy o bezpieczeństwo Twoich danych." />
+  <meta name="theme-color" content="#B81D5B" />
+  <link rel="icon" type="image/svg+xml" href="../assets/icon.svg" />
+  <link rel="apple-touch-icon" href="../assets/icon.png" />
+  <meta property="og:title" content="Polityka Prywatności — Plansy" />
+  <meta property="og:description" content="Zasady ochrony prywatności i przetwarzania danych w aplikacji Plansy." />
+  <meta property="og:image" content="../assets/header.png" />
+  <meta property="og:type" content="website" />
+
+  <style>
+    :root {
+      --berry-start: #D6246C;
+      --berry-end: #8F1142;
+      --berry-primary: #B81D5B;
+      --berry-glow: rgba(214, 36, 108, 0.35);
+      --bg-dark: #0D0B0E;
+      --bg-surface: #17131B;
+      --bg-surface-elevated: #211B27;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(255, 255, 255, 0.2);
+      --text-primary: #FAF8FB;
+      --text-secondary: #A69EAD;
+      --text-muted: #787180;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-primary);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Ambient background caustics */
+    .ambient-glow {
+      position: fixed;
+      top: -200px;
+      right: -100px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--berry-glow) 0%, rgba(143, 17, 66, 0.1) 50%, transparent 75%);
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(90px);
+    }
+
+    .ambient-glow-bottom {
+      position: fixed;
+      bottom: -250px;
+      left: -150px;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(184, 29, 91, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(100px);
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+      width: 100%;
+    }
+
+    /* Header Nav */
+    header {
+      padding: 24px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .brand img {
+      width: 38px;
+      height: 38px;
+      border-radius: 9px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .brand-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .back-link {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 8px 14px;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .back-link:hover {
+      color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    /* Language Switcher */
+    .lang-switcher {
+      display: inline-flex;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 999px;
+      padding: 3px;
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .lang-btn.active {
+      background: linear-gradient(135deg, var(--berry-start), var(--berry-end));
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(184, 29, 91, 0.4);
+    }
+
+    /* Main Content */
+    main {
+      flex: 1;
+      padding: 48px 0 72px;
+    }
+
+    .doc-header {
+      margin-bottom: 40px;
+    }
+
+    .doc-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(214, 36, 108, 0.12);
+      border: 1px solid rgba(214, 36, 108, 0.3);
+      color: #FF8AB3;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 12px;
+      background: linear-gradient(180deg, #FFFFFF 0%, #D4CEE0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .doc-updated {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+    }
+
+    /* Privacy Card / Article */
+    .privacy-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+      position: relative;
+    }
+
+    .privacy-card section {
+      margin-bottom: 36px;
+    }
+
+    .privacy-card section:last-child {
+      margin-bottom: 0;
+    }
+
+    h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #FFF;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    h2::before {
+      content: "";
+      display: inline-block;
+      width: 4px;
+      height: 18px;
+      border-radius: 2px;
+      background: linear-gradient(180deg, var(--berry-start), var(--berry-end));
+    }
+
+    p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      margin-bottom: 12px;
+    }
+
+    ul {
+      list-style: none;
+      margin: 12px 0 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    li {
+      color: var(--text-secondary);
+      font-size: 0.98rem;
+      position: relative;
+      padding-left: 24px;
+    }
+
+    li::before {
+      content: "•";
+      position: absolute;
+      left: 8px;
+      color: var(--berry-start);
+      font-weight: bold;
+    }
+
+    li strong {
+      color: var(--text-primary);
+    }
+
+    .callout {
+      background: rgba(214, 36, 108, 0.08);
+      border: 1px solid rgba(214, 36, 108, 0.22);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin: 20px 0;
+      color: #FAF8FB;
+      font-size: 0.95rem;
+    }
+
+    .callout strong {
+      color: #FF8AB3;
+    }
+
+    a {
+      color: #FF8AB3;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    a:hover {
+      color: #FFB3CE;
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border-subtle);
+      padding: 36px 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      margin-top: auto;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 14px;
+    }
+
+    .footer-link {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-link:hover {
+      color: var(--text-primary);
+    }
+
+    /* Language display toggle */
+    .lang-content {
+      display: none;
+    }
+
+    .lang-content.active {
+      display: block;
+    }
+
+    @media (max-width: 640px) {
+      .privacy-card {
+        padding: 24px 20px;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      header {
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="ambient-glow"></div>
+  <div class="ambient-glow-bottom"></div>
+
+  <div class="container">
+    <header>
+      <a href="../" class="brand">
+        <img src="../assets/icon.png" alt="Plansy App Icon" />
+        <span class="brand-title">Plansy</span>
+      </a>
+
+      <div class="nav-actions">
+        <div class="lang-switcher">
+          <button class="lang-btn active" onclick="setLanguage('pl')" id="btn-pl">PL</button>
+          <button class="lang-btn" onclick="setLanguage('en')" id="btn-en">EN</button>
+        </div>
+        <a href="../" class="back-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          <span id="back-text">Strona główna</span>
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <!-- POLISH VERSION -->
+      <div id="content-pl" class="lang-content active">
+        <div class="doc-header">
+          <div class="doc-badge">Bezpieczeństwo & Prywatność</div>
+          <h1>Polityka Prywatności</h1>
+          <p class="doc-updated">Ostatnia aktualizacja: 27 października 2026 r.</p>
+        </div>
+
+        <div class="privacy-card">
+          <section>
+            <h2>1. Wprowadzenie i idea Privacy by Design</h2>
+            <p>
+              Niniejsza Polityka Prywatności określa zasady przetwarzania danych w aplikacji mobilnej <strong>Plansy</strong> na system iOS (wcześniej znanej jako <em>UEK Schedule</em>), stworzonej przez <strong>Sebastiana Staszczyka</strong>.
+            </p>
+            <p>
+              Twoja prywatność jest dla nas najwyższą wartością. Tworząc Plansy, kierowaliśmy się zasadą minimalizmu i <em>Privacy by Design</em> — aplikacja powstała po to, by pomagać studentom w organizacji czasu, bez niepotrzebnego śledzenia, profilowania czy zbierania zbędnych danych osobowych.
+            </p>
+            <div class="callout">
+              <strong>Najważniejsza zasada:</strong> Aplikacja Plansy <u>nie wymaga zakładania konta</u>, nie prosi o dane logowania do systemów uczelni, a Twoje notatki i harmonogramy są przechowywane bezpośrednio na Twoim urządzeniu.
+            </div>
+          </section>
+
+          <section>
+            <h2>2. Jakie dane przetwarza aplikacja</h2>
+            <p>Aplikacja przetwarza wyłącznie dane niezbędne do prawidłowego wyświetlania Twojego planu zajęć:</p>
+            <ul>
+              <li><strong>Dane harmonogramu i preferencji:</strong> Wybrana uczelnia, kierunek, wydział, grupa zajęciowa, lista ukrytych zajęć, własne notatki do przedmiotów oraz ustawienia kolorów. Dane te są zapisywane <strong>wyłącznie lokalnie na Twoim urządzeniu</strong> (w pamięci aplikacji oraz współdzielonym obszarze App Group na potrzeby widżetów).</li>
+              <li><strong>Pobieranie planów z uczelni:</strong> Aplikacja pobiera oficjalne, publicznie udostępniane plany zajęć z systemów informatycznych wspieranych uczelni. Plansy <strong>nigdy</strong> nie żąda ani nie zapisuje haseł do uczelnianych systemów (np. USOSweb, Wirtualna Uczelnia, e-Dziekanat).</li>
+              <li><strong>Dane kontaktowe przy wsparciu:</strong> Jeśli zdecydujesz się wysłać do nas wiadomość e-mail w celu zgłoszenia błędu lub dodania nowej uczelni, Twój adres e-mail oraz treść wiadomości posłużą wyłącznie do udzielenia odpowiedzi.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>3. Uprawnienia i funkcje systemowe iOS</h2>
+            <p>Plansy integruje się z natywnymi funkcjami systemu Apple wyłącznie za Twoją wyraźną zgodą:</p>
+            <ul>
+              <li><strong>Kalendarz systemowy (iOS Calendar):</strong> Funkcja eksportu planu zajęć prosi o uprawnienie do dodawania wydarzeń w kalendarzu. Aplikacja dodaje wyłącznie wybrane zajęcia i nie odczytuje Twoich prywatnych wpisów.</li>
+              <li><strong>Powiadomienia (Notifications):</strong> Powiadomienia o zbliżających się wykładach i ćwiczeniach są planowane i wyzwalane <strong>w 100% lokalnie</strong> na Twoim urządzeniu. Aplikacja nie korzysta z zewnętrznych serwerów push do śledzenia Twojej aktywności.</li>
+              <li><strong>Widżety i Live Activities:</strong> Przekazywanie danych o bieżących zajęciach na ekran blokady lub Dynamiczną Wyspę odbywa się za pośrednictwem lokalnego mechanizmu <code>AppGroupData</code> bez połączeń z zewnętrznymi serwerami.</li>
+              <li><strong>Mapa kampusu:</strong> Przeglądanie budynków uczelnianych korzysta z natywnych map Apple Maps. Aplikacja nie rejestruje ani nie przechowuje historii Twojej lokalizacji.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>4. Usługi podmiotów trzecich</h2>
+            <p>W celu zapewnienia działania aplikacji oraz jej bezpłatnego udostępniania korzystamy z zaufanych narzędzi firm trzecich:</p>
+            <ul>
+              <li><strong>Google AdMob:</strong> W aplikacji mogą być wyświetlane nieinwazyjne reklamy. Usługa ta może wykorzystywać anonimowe identyfikatory reklamowe (IDFA wyłącznie za Twoją zgodą w systemowym oknie ATT) w celu przeciwdziałania nadużyciom i serwowania odpowiednich reklam. Możesz w każdej chwili zarządzać swoimi wyborami i cofnąć zgodę na spersonalizowane reklamy w ustawieniach aplikacji za pośrednictwem formularza Google UMP (User Messaging Platform). Więcej: <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer">Polityka Reklam Google</a>.</li>
+              <li><strong>Google Firebase:</strong> Wykorzystujemy usługę Firebase wyłącznie do bezpiecznego pobierania zdalnej konfiguracji aplikacji (np. status dostępności aktualizacji planów, adres e-mail do kontaktu). Nie używamy Firebase do identyfikacji konkretnych osób.</li>
+              <li><strong>Apple Inc.:</strong> Obsługa pobierania aplikacji, weryfikacji zakupów i zgłaszania anonimowych raportów o awariach w ramach usług App Store. Więcej: <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener noreferrer">Polityka Prywatności Apple</a>.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>5. Przechowywanie i usuwanie danych</h2>
+            <p>
+              Wszystkie Twoje notatki, ukryte przedmioty i ustawienia znajdują się w bezpiecznej piaskownicy (sandbox) na Twoim iPhonie lub iPadzie.
+            </p>
+            <p>
+              W każdej chwili możesz usunąć wszystkie dane zapisane przez Plansy, odinstalowując aplikację z urządzenia lub czyszcząc jej pamięć podręczną w ustawieniach systemowych iOS.
+            </p>
+          </section>
+
+          <section>
+            <h2>6. Prawa użytkownika (RODO / GDPR)</h2>
+            <p>Zgodnie z przepisami Ogólnego Rozporządzenia o Ochronie Danych (RODO) przysługuje Ci:</p>
+            <ul>
+              <li>Prawo do informacji o przetwarzaniu Twoich danych,</li>
+              <li>Prawo do wycofania zgody na reklamy spersonalizowane w dowolnym momencie (w zakładce Ustawienia w aplikacji),</li>
+              <li>Prawo do usunięcia danych poprzez usunięcie aplikacji,</li>
+              <li>Prawo do wniesienia skargi do organu nadzorczego (Prezesa Urzędu Ochrony Danych Osobowych).</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>7. Zmiany w Polityce Prywatności</h2>
+            <p>
+              Możemy od czasu do czasu aktualizować niniejszą Politykę Prywatności (np. w związku z dodaniem nowych funkcji lub zmianą przepisów prawa). Wszelkie zmiany będą publikowane na tej stronie internetowej z podaniem nowej daty wejścia w życie.
+            </p>
+          </section>
+
+          <section>
+            <h2>8. Kontakt</h2>
+            <p>
+              W razie pytań, uwag lub chęci skorzystania ze swoich praw związanych z prywatnością, zapraszamy do kontaktu:
+            </p>
+            <p>
+              📧 E-mail: <a href="mailto:plansy.contact@gmail.com">plansy.contact@gmail.com</a><br />
+              👤 Autor aplikacji: Sebastian Staszczyk
+            </p>
+          </section>
+        </div>
+      </div>
+
+      <!-- ENGLISH VERSION -->
+      <div id="content-en" class="lang-content">
+        <div class="doc-header">
+          <div class="doc-badge">Security & Privacy</div>
+          <h1>Privacy Policy</h1>
+          <p class="doc-updated">Last updated: October 27, 2026</p>
+        </div>
+
+        <div class="privacy-card">
+          <section>
+            <h2>1. Introduction & Privacy by Design</h2>
+            <p>
+              This Privacy Policy explains how data is handled in the <strong>Plansy</strong> mobile application for iOS (formerly known as <em>UEK Schedule</em>), created by <strong>Sebastian Staszczyk</strong> ("we", "us", "developer").
+            </p>
+            <p>
+              Your privacy is our utmost priority. Plansy was developed with a strict <em>Privacy by Design</em> approach: the app is built to help students effortlessly manage their timetable without intrusive tracking, user profiling, or harvesting of personal data.
+            </p>
+            <div class="callout">
+              <strong>Core Principle:</strong> Plansy <u>does not require account registration</u>, never asks for your university credentials, and stores your timetable selections and notes directly on your own device.
+            </div>
+          </section>
+
+          <section>
+            <h2>2. Information We Process</h2>
+            <p>Plansy only processes data strictly necessary to display your class timetable and provide productivity features:</p>
+            <ul>
+              <li><strong>Schedule Preferences & Notes:</strong> Selected university, faculty, field of study, group ID, hidden events, custom notes for classes, and color themes. This data is stored <strong>exclusively on your device</strong> (in local storage and the shared App Group container for widgets).</li>
+              <li><strong>Timetable Fetching:</strong> The app downloads publicly accessible schedule feeds from the official servers of supported universities. Plansy <strong>never</strong> requests or stores your university account passwords (e.g., USOSweb, Virtual University portals).</li>
+              <li><strong>Support Communications:</strong> When you contact us via email to report a bug or request support for a new university, we use your email address and message content solely to reply to your inquiry.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>3. iOS Permissions & System Integrations</h2>
+            <p>Plansy interacts with native iOS capabilities only when explicitly requested by you:</p>
+            <ul>
+              <li><strong>System Calendar (iOS Calendar):</strong> Exporting classes to your calendar requires write permission. Plansy only creates events for your selected classes and never accesses or reads your existing private calendar events.</li>
+              <li><strong>Notifications:</strong> Class reminder notifications are scheduled and triggered <strong>100% locally</strong> on your device. We do not use remote push notification servers to track your activity.</li>
+              <li><strong>Widgets & Live Activities:</strong> Real-time class updates displayed on your Lock Screen or the Dynamic Island are passed via local device storage (<code>AppGroupData</code>) without external server communication.</li>
+              <li><strong>Campus Map:</strong> Campus map viewing is powered by Apple Maps framework. Plansy does not record, log, or transmit your physical location.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>4. Third-Party Services</h2>
+            <p>To provide reliable operation and keep the app free to use, we integrate a limited set of verified third-party services:</p>
+            <ul>
+              <li><strong>Google AdMob:</strong> The free version may display banner advertisements. AdMob may process anonymous advertising identifiers (IDFA only if permitted via iOS App Tracking Transparency) to prevent fraud and deliver appropriate ads. You can manage or revoke your consent at any time in the app's Settings menu using the Google UMP consent form. Learn more: <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer">Google Advertising Policies</a>.</li>
+              <li><strong>Google Firebase:</strong> Used solely to retrieve dynamic configuration values (such as schedule update flags and official support contact email). We do not use Firebase to personally identify users.</li>
+              <li><strong>Apple Inc.:</strong> App distribution, in-app purchases, and anonymous crash telemetry provided through the App Store. Learn more: <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener noreferrer">Apple Privacy Policy</a>.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>5. Data Storage & Retention</h2>
+            <p>
+              All personal customizations, hidden courses, and notes reside securely inside the iOS app sandbox on your iPhone or iPad.
+            </p>
+            <p>
+              You can instantly and permanently erase all data saved by Plansy at any time by uninstalling the application from your device.
+            </p>
+          </section>
+
+          <section>
+            <h2>6. User Rights (GDPR / RODO)</h2>
+            <p>Under the General Data Protection Regulation (GDPR), you have the right to:</p>
+            <ul>
+              <li>Be informed about how your data is processed,</li>
+              <li>Manage or withdraw ad consent at any time via App Settings,</li>
+              <li>Erase all stored data by uninstalling the app,</li>
+              <li>Lodge a complaint with a competent supervisory data protection authority.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>7. Changes to This Policy</h2>
+            <p>
+              We may update this Privacy Policy from time to time to reflect new features, app updates, or legal requirements. Any modifications will be posted directly on this page with an updated effective date.
+            </p>
+          </section>
+
+          <section>
+            <h2>8. Contact Us</h2>
+            <p>
+              If you have any questions, suggestions, or requests regarding this Privacy Policy, please reach out to us:
+            </p>
+            <p>
+              📧 Email: <a href="mailto:plansy.contact@gmail.com">plansy.contact@gmail.com</a><br />
+              👤 App Creator: Sebastian Staszczyk
+            </p>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-links">
+        <a href="../" class="footer-link">Strona Główna / Home</a>
+        <a href="https://apps.apple.com/pl/app/uek-schedule/id6468822571" class="footer-link" target="_blank" rel="noopener noreferrer">App Store</a>
+        <a href="mailto:plansy.contact@gmail.com" class="footer-link">Kontakt</a>
+      </div>
+      <p>&copy; 2026 Plansy. Created by Sebastian Staszczyk. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    function setLanguage(lang) {
+      const plContent = document.getElementById('content-pl');
+      const enContent = document.getElementById('content-en');
+      const btnPl = document.getElementById('btn-pl');
+      const btnEn = document.getElementById('btn-en');
+      const backText = document.getElementById('back-text');
+
+      if (lang === 'en') {
+        plContent.classList.remove('active');
+        enContent.classList.add('active');
+        btnPl.classList.remove('active');
+        btnEn.classList.add('active');
+        backText.textContent = 'Home';
+        document.documentElement.lang = 'en';
+        document.title = 'Privacy Policy — Plansy';
+      } else {
+        enContent.classList.remove('active');
+        plContent.classList.add('active');
+        btnEn.classList.remove('active');
+        btnPl.classList.add('active');
+        backText.textContent = 'Strona główna';
+        document.documentElement.lang = 'pl';
+        document.title = 'Polityka Prywatności — Plansy';
+      }
+    }
+
+    // Auto-detect browser language or query parameter
+    (function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const langParam = urlParams.get('lang');
+      if (langParam === 'en' || (langParam === null && navigator.language && !navigator.language.startsWith('pl'))) {
+        setLanguage('en');
+      }
+    })();
+  </script>
+</body>
+</html>
