@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Plansy — Nowoczesny Plan Zajęć dla Studentów</title>
-  <meta name="description" content="Plansy to nowoczesny, niezastąpiony asystent każdego studenta. Sprawdzaj plan zajęć, korzystaj z widżetów, Live Activities i miej harmonogram zawsze pod ręką." />
+  <meta name="description" content="Plansy to nowoczesny, niezastąpiony asystent każdego studenta. Sprawdzaj plan zajęć, korzystaj z widżetów, Live Activities i widoku tygodniowego." />
   <meta name="theme-color" content="#B81D5B" />
   <link rel="icon" type="image/svg+xml" href="assets/icon.svg" />
   <link rel="apple-touch-icon" href="assets/icon.png" />
   <meta property="og:title" content="Plansy — Plan Zajęć & Uczelnia" />
-  <meta property="og:description" content="Nowoczesny asystent studenta. Widżety, Live Activities, Teams, Moodle i obsługa wielu uczelni." />
+  <meta property="og:description" content="Nowoczesny asystent studenta. Widżety, Live Activities, widok tygodniowy i obsługa wielu uczelni." />
   <meta property="og:image" content="assets/header.png" />
   <meta property="og:type" content="website" />
 
@@ -79,7 +79,7 @@
 
     /* Header Nav */
     header {
-      padding: 28px 0;
+      padding: 24px 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -107,6 +107,12 @@
       letter-spacing: -0.02em;
     }
 
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
     .nav-links {
       display: flex;
       gap: 20px;
@@ -124,6 +130,37 @@
     .nav-link:hover {
       color: var(--text-primary);
     }
+
+    /* Language Switcher */
+    .lang-switcher {
+      display: inline-flex;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 999px;
+      padding: 3px;
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .lang-btn.active {
+      background: linear-gradient(135deg, var(--berry-start), var(--berry-end));
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(184, 29, 91, 0.4);
+    }
+
+    /* Multi-language display control */
+    html[lang="pl"] .lang-en { display: none !important; }
+    html[lang="en"] .lang-pl { display: none !important; }
 
     /* Hero Section */
     .hero {
@@ -370,6 +407,17 @@
     .footer-link:hover {
       color: var(--text-primary);
     }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 16px;
+      }
+      .nav-right {
+        width: 100%;
+        justify-content: space-between;
+      }
+    }
   </style>
 </head>
 <body>
@@ -382,11 +430,28 @@
         <img src="assets/icon.png" alt="Plansy Icon" />
         <span class="brand-name">Plansy</span>
       </a>
-      <nav class="nav-links">
-        <a href="#features" class="nav-link">Funkcje</a>
-        <a href="#universities" class="nav-link">Uczelnie</a>
-        <a href="mailto:plansy.contact@gmail.com" class="nav-link">Kontakt</a>
-      </nav>
+
+      <div class="nav-right">
+        <nav class="nav-links">
+          <a href="#features" class="nav-link">
+            <span class="lang-pl">Funkcje</span>
+            <span class="lang-en">Features</span>
+          </a>
+          <a href="#universities" class="nav-link">
+            <span class="lang-pl">Uczelnie</span>
+            <span class="lang-en">Universities</span>
+          </a>
+          <a href="mailto:plansy.contact@gmail.com" class="nav-link">
+            <span class="lang-pl">Kontakt</span>
+            <span class="lang-en">Contact</span>
+          </a>
+        </nav>
+
+        <div class="lang-switcher">
+          <button class="lang-btn active" onclick="setLanguage('pl')" id="btn-pl">PL</button>
+          <button class="lang-btn" onclick="setLanguage('en')" id="btn-en">EN</button>
+        </div>
+      </div>
     </header>
 
     <main>
@@ -394,11 +459,18 @@
       <section class="hero">
         <div class="hero-badge">
           <span class="hero-badge-dot"></span>
-          Nowa odsłona UEK Schedule
+          <span class="lang-pl">Nowa odsłona UEK Schedule</span>
+          <span class="lang-en">Formerly UEK Schedule</span>
         </div>
-        <h1>Twój plan studiów<br />zawsze pod ręką.</h1>
+
+        <h1>
+          <span class="lang-pl">Twój plan studiów<br />zawsze pod ręką.</span>
+          <span class="lang-en">Your academic schedule,<br />always at hand.</span>
+        </h1>
+
         <p class="hero-subtitle">
-          Plansy to nowoczesny, niezastąpiony asystent każdego studenta. Zapomnij o mozolnym szukaniu planu w starych systemach uczelnianych — ciesz się natychmiastowym i przejrzystym harmonogramem zajęć.
+          <span class="lang-pl">Plansy to nowoczesny, niezastąpiony asystent każdego studenta. Zapomnij o mozolnym szukaniu planu w starych systemach uczelnianych — ciesz się natychmiastowym i przejrzystym harmonogramem zajęć.</span>
+          <span class="lang-en">Plansy is a modern, indispensable assistant for every student. Forget digging through outdated university portals — get instant, clear access to your entire class schedule.</span>
         </p>
 
         <div class="cta-group">
@@ -411,7 +483,8 @@
             <svg viewBox="0 0 24 24">
               <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.89c.66-.82 1.11-1.95.99-3.09-.96.04-2.13.65-2.81 1.46-.59.69-1.12 1.83-.98 2.94 1.08.08 2.15-.53 2.8-1.31z"/>
             </svg>
-            Pobierz w App Store
+            <span class="lang-pl">Pobierz w App Store</span>
+            <span class="lang-en">Download on the App Store</span>
           </a>
         </div>
 
@@ -423,71 +496,159 @@
       <!-- Features Bento Grid -->
       <section id="features">
         <div class="section-header">
-          <h2 class="section-title">Wszystko, czego potrzebujesz na studiach</h2>
-          <p class="section-subtitle">Dopracowane funkcje stworzone specjalnie, by ułatwić Twój semestr.</p>
+          <h2 class="section-title">
+            <span class="lang-pl">Wszystko, czego potrzebujesz na studiach</span>
+            <span class="lang-en">Everything You Need for University</span>
+          </h2>
+          <p class="section-subtitle">
+            <span class="lang-pl">Dopracowane funkcje stworzone specjalnie, by ułatwić Twój semestr.</span>
+            <span class="lang-en">Crafted features designed to make every semester effortless.</span>
+          </p>
         </div>
 
         <div class="features-grid">
+          <!-- Feature: Weekly View -->
+          <div class="feature-card">
+            <span class="feature-icon">📊</span>
+            <h3 class="feature-title">
+              <span class="lang-pl">Nowy Widok Tygodniowy</span>
+              <span class="lang-en">New Weekly Timetable View</span>
+            </h3>
+            <p class="feature-desc">
+              <span class="lang-pl">Przeglądaj cały tydzień zajęć na jednym przejrzystym ekranie z ergonomicznym układem siatki.</span>
+              <span class="lang-en">Browse your entire week of classes in an intuitive, ergonomic weekly grid layout.</span>
+            </p>
+          </div>
+
+          <!-- Feature: Widgets -->
           <div class="feature-card">
             <span class="feature-icon">📱</span>
-            <h3 class="feature-title">Widżety na Ekranie</h3>
-            <p class="feature-desc">Miej najbliższe zajęcia, salę i godzinę zawsze przed oczami bez konieczności otwierania aplikacji.</p>
+            <h3 class="feature-title">
+              <span class="lang-pl">Widżety na Ekranie</span>
+              <span class="lang-en">Home Screen Widgets</span>
+            </h3>
+            <p class="feature-desc">
+              <span class="lang-pl">Miej najbliższe zajęcia, salę i godzinę zawsze przed oczami bez konieczności otwierania aplikacji.</span>
+              <span class="lang-en">Keep upcoming classes, lecture halls, and start times right on your Home Screen.</span>
+            </p>
           </div>
 
+          <!-- Feature: Live Activities -->
           <div class="feature-card">
             <span class="feature-icon">⚡️</span>
-            <h3 class="feature-title">Live Activities & Dynamic Island</h3>
-            <p class="feature-desc">Śledź trwające i nadchodzące zajęcia w czasie rzeczywistym bezpośrednio z ekranu blokady.</p>
+            <h3 class="feature-title">
+              <span class="lang-pl">Live Activities & Dynamic Island</span>
+              <span class="lang-en">Live Activities & Dynamic Island</span>
+            </h3>
+            <p class="feature-desc">
+              <span class="lang-pl">Śledź trwające i nadchodzące zajęcia w czasie rzeczywistym bezpośrednio z ekranu blokady.</span>
+              <span class="lang-en">Track ongoing and upcoming classes in real time directly on your Lock Screen.</span>
+            </p>
           </div>
 
+          <!-- Feature: Teams & Moodle -->
           <div class="feature-card">
             <span class="feature-icon">💻</span>
-            <h3 class="feature-title">Teams i Moodle</h3>
-            <p class="feature-desc">Błyskawiczne przejście do spotkań online i materiałów dydaktycznych na platformach e-learningowych.</p>
+            <h3 class="feature-title">
+              <span class="lang-pl">Teams i Moodle</span>
+              <span class="lang-en">Teams & Moodle Integration</span>
+            </h3>
+            <p class="feature-desc">
+              <span class="lang-pl">Błyskawiczne przejście do spotkań online i materiałów dydaktycznych na platformach e-learningowych.</span>
+              <span class="lang-en">Jump directly into online lectures, virtual classrooms, and course courseware.</span>
+            </p>
           </div>
 
+          <!-- Feature: Notifications -->
           <div class="feature-card">
             <span class="feature-icon">🔔</span>
-            <h3 class="feature-title">Powiadomienia o Zajęciach</h3>
-            <p class="feature-desc">Inteligentne przypomnienia przed każdym wykładem lub ćwiczeniami, abyś zawsze dotarł na czas.</p>
+            <h3 class="feature-title">
+              <span class="lang-pl">Powiadomienia o Zajęciach</span>
+              <span class="lang-en">Smart Class Reminders</span>
+            </h3>
+            <p class="feature-desc">
+              <span class="lang-pl">Lokalne przypomnienia przed każdym wykładem lub ćwiczeniami, abyś zawsze dotarł na czas.</span>
+              <span class="lang-en">Timely on-device reminders before lectures and classes so you never run late.</span>
+            </p>
           </div>
 
+          <!-- Feature: Notes -->
           <div class="feature-card">
             <span class="feature-icon">📝</span>
-            <h3 class="feature-title">Notatki i Własne Wydarzenia</h3>
-            <p class="feature-desc">Dodawaj prywatne notatki do konkretnych zajęć oraz wprowadzaj własne terminy i konsultacje.</p>
+            <h3 class="feature-title">
+              <span class="lang-pl">Notatki i Własne Wydarzenia</span>
+              <span class="lang-en">Notes & Custom Events</span>
+            </h3>
+            <p class="feature-desc">
+              <span class="lang-pl">Dodawaj prywatne notatki do konkretnych zajęć oraz wprowadzaj własne terminy i konsultacje.</span>
+              <span class="lang-en">Attach private study notes to courses and add custom events and office hours.</span>
+            </p>
           </div>
 
+          <!-- Feature: Hide Classes -->
           <div class="feature-card">
             <span class="feature-icon">👁️</span>
-            <h3 class="feature-title">Ukrywanie Zajęć</h3>
-            <p class="feature-desc">Ukrywaj zajęcia, na które nie uczęszczasz (np. inne grupy językowe lub seminaria), zachowując idealny porządek.</p>
+            <h3 class="feature-title">
+              <span class="lang-pl">Ukrywanie Zajęć</span>
+              <span class="lang-en">Hide Unattended Courses</span>
+            </h3>
+            <p class="feature-desc">
+              <span class="lang-pl">Ukrywaj zajęcia, na które nie uczęszczasz (np. inne grupy językowe), zachowując idealny porządek.</span>
+              <span class="lang-en">Hide lectures or language groups you don't attend to maintain a clean schedule.</span>
+            </p>
           </div>
 
+          <!-- Feature: Rector's Hours -->
           <div class="feature-card">
             <span class="feature-icon">🗓️</span>
-            <h3 class="feature-title">Godziny Rektorskie & Dni Wolne</h3>
-            <p class="feature-desc">Pełna informacja o przerwach świątecznych, sesji egzaminacyjnej oraz ogłoszonych dniach rektorskich.</p>
+            <h3 class="feature-title">
+              <span class="lang-pl">Godziny Rektorskie & Dni Wolne</span>
+              <span class="lang-en">Rector's Days & Holidays</span>
+            </h3>
+            <p class="feature-desc">
+              <span class="lang-pl">Pełna informacja o przerwach świątecznych, sesji egzaminacyjnej oraz ogłoszonych dniach rektorskich.</span>
+              <span class="lang-en">Stay informed about academic breaks, exam sessions, and officially announced days off.</span>
+            </p>
           </div>
 
+          <!-- Feature: Calendar Export -->
           <div class="feature-card">
             <span class="feature-icon">📅</span>
-            <h3 class="feature-title">Eksport do Kalendarza</h3>
-            <p class="feature-desc">Synchronizuj cały swój plan zajęć z systemowym kalendarzem Apple w kilka sekund.</p>
+            <h3 class="feature-title">
+              <span class="lang-pl">Eksport do Kalendarza</span>
+              <span class="lang-en">System Calendar Export</span>
+            </h3>
+            <p class="feature-desc">
+              <span class="lang-pl">Synchronizuj cały swój plan zajęć z systemowym kalendarzem Apple w kilka sekund.</span>
+              <span class="lang-en">Sync your timetable with the native Apple Calendar app in seconds.</span>
+            </p>
           </div>
 
+          <!-- Feature: Campus Map -->
           <div class="feature-card">
             <span class="feature-icon">🗺️</span>
-            <h3 class="feature-title">Mapa Kampusu</h3>
-            <p class="feature-desc">Z łatwością zlokalizuj sale wykładowe i budynki na terenie uczelni bez błądzenia po korytarzach.</p>
+            <h3 class="feature-title">
+              <span class="lang-pl">Mapa Kampusu</span>
+              <span class="lang-en">Interactive Campus Map</span>
+            </h3>
+            <p class="feature-desc">
+              <span class="lang-pl">Z łatwością zlokalizuj sale wykładowe i budynki na terenie uczelni bez błądzenia po korytarzach.</span>
+              <span class="lang-en">Easily find campus buildings and lecture halls without getting lost.</span>
+            </p>
           </div>
         </div>
       </section>
 
       <!-- Supported Universities -->
       <section id="universities" class="universities-section">
-        <h2 class="section-title">Wspierane Uczelnie</h2>
-        <p class="section-subtitle">Plansy obsługuje studentów wiodących polskich uniwersytetów i politechnik.</p>
+        <h2 class="section-title">
+          <span class="lang-pl">Wspierane Uczelnie</span>
+          <span class="lang-en">Supported Universities</span>
+        </h2>
+        <p class="section-subtitle">
+          <span class="lang-pl">Plansy obsługuje studentów wiodących polskich uniwersytetów i politechnik.</span>
+          <span class="lang-en">Plansy supports students and faculty across major Polish universities.</span>
+        </p>
 
         <div class="uni-grid">
           <div class="uni-card">
@@ -525,7 +686,8 @@
         </div>
 
         <p class="uni-footer-text">
-          Nie ma jeszcze Twojej uczelni? Napisz do nas na <a href="mailto:plansy.contact@gmail.com">plansy.contact@gmail.com</a> — chętnie ją dodamy!
+          <span class="lang-pl">Nie ma jeszcze Twojej uczelni? Napisz do nas na <a href="mailto:plansy.contact@gmail.com">plansy.contact@gmail.com</a> — chętnie ją dodamy!</span>
+          <span class="lang-en">Don't see your university yet? Email us at <a href="mailto:plansy.contact@gmail.com">plansy.contact@gmail.com</a> — we'll gladly add it!</span>
         </p>
       </section>
     </main>
@@ -533,11 +695,48 @@
     <footer>
       <div class="footer-links">
         <a href="https://apps.apple.com/pl/app/uek-schedule/id6468822571" class="footer-link" target="_blank" rel="noopener noreferrer">App Store</a>
-        <a href="mailto:plansy.contact@gmail.com" class="footer-link">Pomoc & Kontakt</a>
-        <a href="privacy/" class="footer-link">Polityka Prywatności</a>
+        <a href="mailto:plansy.contact@gmail.com" class="footer-link">
+          <span class="lang-pl">Pomoc & Kontakt</span>
+          <span class="lang-en">Help & Contact</span>
+        </a>
+        <a href="privacy/" class="footer-link">
+          <span class="lang-pl">Polityka Prywatności</span>
+          <span class="lang-en">Privacy Policy</span>
+        </a>
       </div>
-      <p>&copy; 2026 Plansy. Created by Sebastian Staszczyk. Wszelkie prawa zastrzeżone.</p>
+      <p>
+        <span class="lang-pl">&copy; 2026 Plansy. Stworzone przez Sebastiana Staszczyka. Wszelkie prawa zastrzeżone.</span>
+        <span class="lang-en">&copy; 2026 Plansy. Created by Sebastian Staszczyk. All rights reserved.</span>
+      </p>
     </footer>
   </div>
+
+  <script>
+    function setLanguage(lang) {
+      const btnPl = document.getElementById('btn-pl');
+      const btnEn = document.getElementById('btn-en');
+
+      if (lang === 'en') {
+        document.documentElement.lang = 'en';
+        document.title = 'Plansy — Modern Academic Timetable for Students';
+        btnPl.classList.remove('active');
+        btnEn.classList.add('active');
+      } else {
+        document.documentElement.lang = 'pl';
+        document.title = 'Plansy — Nowoczesny Plan Zajęć dla Studentów';
+        btnEn.classList.remove('active');
+        btnPl.classList.add('active');
+      }
+    }
+
+    // Auto-detect browser language or query parameter (?lang=en)
+    (function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const langParam = urlParams.get('lang');
+      if (langParam === 'en' || (langParam === null && navigator.language && !navigator.language.startsWith('pl'))) {
+        setLanguage('en');
+      }
+    })();
+  </script>
 </body>
 </html>
