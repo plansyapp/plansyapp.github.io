@@ -1,0 +1,30 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="295" y1="48" x2="729" y2="976" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#D6246C"/>
+      <stop offset="100%" stop-color="#8F1142"/>
+    </linearGradient>
+    <linearGradient id="glyphGradient" x1="228" y1="196" x2="796" y2="828" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#FCE7F0"/>
+    </linearGradient>
+    <filter id="subtleShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#500020" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Background squircle -->
+  <rect width="1024" height="1024" rx="224" fill="url(#bgGradient)"/>
+
+  <!-- Main "P" glyph: Stem and Arch -->
+  <g filter="url(#subtleShadow)">
+    <!-- Vertical stem -->
+    <rect x="228" y="196" width="168" height="632" rx="84" fill="url(#glyphGradient)"/>
+    <!-- Top arch -->
+    <path d="M 432 274 C 432 230.9 466.9 196 510 196 L 588 196 C 702.9 196 796 289.1 796 404 C 796 518.9 702.9 612 588 612 L 510 612 C 466.9 612 432 577.1 432 534 C 432 490.9 466.9 456 510 456 L 588 456 C 616.7 456 640 432.7 640 404 C 640 375.3 616.7 352 588 352 L 510 352 C 466.9 352 432 317.1 432 274 Z" fill="url(#glyphGradient)"/>
+  </g>
+
+  <!-- Horizontal Schedule Bars (Foreground) -->
+  <rect x="432" y="648" width="296" height="76" rx="38" fill="#FFFFFF" fill-opacity="0.52"/>
+  <rect x="432" y="752" width="188" height="76" rx="38" fill="#FFFFFF" fill-opacity="0.30"/>
+</svg>
