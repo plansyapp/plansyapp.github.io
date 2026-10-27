@@ -13,6 +13,20 @@
   <meta property="og:image" content="assets/header.png" />
   <meta property="og:type" content="website" />
 
+  <script>
+    (function() {
+      try {
+        var params = new URLSearchParams(window.location.search);
+        var lang = params.get('lang') || localStorage.getItem('plansy_lang');
+        if (lang === 'en') {
+          document.documentElement.lang = 'en';
+        } else {
+          document.documentElement.lang = 'pl';
+        }
+      } catch (e) {}
+    })();
+  </script>
+
   <style>
     :root {
       --berry-start: #D6246C;
@@ -712,29 +726,39 @@
   </div>
 
   <script>
+    const STORAGE_KEY = 'plansy_lang';
+
     function setLanguage(lang) {
+      const targetLang = (lang === 'en') ? 'en' : 'pl';
       const btnPl = document.getElementById('btn-pl');
       const btnEn = document.getElementById('btn-en');
 
-      if (lang === 'en') {
+      if (targetLang === 'en') {
         document.documentElement.lang = 'en';
         document.title = 'Plansy — Modern Academic Timetable for Students';
-        btnPl.classList.remove('active');
-        btnEn.classList.add('active');
+        if (btnPl) btnPl.classList.remove('active');
+        if (btnEn) btnEn.classList.add('active');
       } else {
         document.documentElement.lang = 'pl';
         document.title = 'Plansy — Nowoczesny Plan Zajęć dla Studentów';
-        btnEn.classList.remove('active');
-        btnPl.classList.add('active');
+        if (btnEn) btnEn.classList.remove('active');
+        if (btnPl) btnPl.classList.add('active');
       }
+
+      try {
+        localStorage.setItem(STORAGE_KEY, targetLang);
+      } catch (e) {}
     }
 
-    // Auto-detect browser language or query parameter (?lang=en)
     (function() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const langParam = urlParams.get('lang');
-      if (langParam === 'en' || (langParam === null && navigator.language && !navigator.language.startsWith('pl'))) {
-        setLanguage('en');
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const langParam = urlParams.get('lang');
+        const savedLang = localStorage.getItem(STORAGE_KEY);
+        const initialLang = (langParam === 'en' || langParam === 'pl') ? langParam : (savedLang || 'pl');
+        setLanguage(initialLang);
+      } catch (e) {
+        setLanguage('pl');
       }
     })();
   </script>

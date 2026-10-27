@@ -13,6 +13,20 @@
   <meta property="og:image" content="../assets/header.png" />
   <meta property="og:type" content="website" />
 
+  <script>
+    (function() {
+      try {
+        var params = new URLSearchParams(window.location.search);
+        var lang = params.get('lang') || localStorage.getItem('plansy_lang');
+        if (lang === 'en') {
+          document.documentElement.lang = 'en';
+        } else {
+          document.documentElement.lang = 'pl';
+        }
+      } catch (e) {}
+    })();
+  </script>
+
   <style>
     :root {
       --berry-start: #D6246C;
@@ -316,6 +330,14 @@
       display: block;
     }
 
+    /* Multi-language display control */
+    html[lang="pl"] .lang-en { display: none !important; }
+    html[lang="en"] .lang-pl { display: none !important; }
+    html[lang="pl"] #content-en { display: none !important; }
+    html[lang="pl"] #content-pl { display: block !important; }
+    html[lang="en"] #content-pl { display: none !important; }
+    html[lang="en"] #content-en { display: block !important; }
+
     @media (max-width: 640px) {
       .privacy-card {
         padding: 24px 20px;
@@ -348,7 +370,8 @@
         </div>
         <a href="../" class="back-link">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-          <span id="back-text">Strona główna</span>
+          <span class="lang-pl">Strona główna</span>
+          <span class="lang-en">Home</span>
         </a>
       </div>
     </header>
@@ -515,47 +538,63 @@
 
     <footer>
       <div class="footer-links">
-        <a href="../" class="footer-link">Strona Główna / Home</a>
+        <a href="../" class="footer-link">
+          <span class="lang-pl">Strona główna</span>
+          <span class="lang-en">Home</span>
+        </a>
         <a href="https://apps.apple.com/pl/app/uek-schedule/id6468822571" class="footer-link" target="_blank" rel="noopener noreferrer">App Store</a>
-        <a href="mailto:plansy.contact@gmail.com" class="footer-link">Kontakt / Contact</a>
+        <a href="mailto:plansy.contact@gmail.com" class="footer-link">
+          <span class="lang-pl">Pomoc & Kontakt</span>
+          <span class="lang-en">Help & Contact</span>
+        </a>
       </div>
-      <p>&copy; 2026 Plansy. Created by Sebastian Staszczyk. All rights reserved.</p>
+      <p>
+        <span class="lang-pl">&copy; 2026 Plansy. Stworzone przez Sebastiana Staszczyka. Wszelkie prawa zastrzeżone.</span>
+        <span class="lang-en">&copy; 2026 Plansy. Created by Sebastian Staszczyk. All rights reserved.</span>
+      </p>
     </footer>
   </div>
 
   <script>
+    const STORAGE_KEY = 'plansy_lang';
+
     function setLanguage(lang) {
+      const targetLang = (lang === 'en') ? 'en' : 'pl';
       const plContent = document.getElementById('content-pl');
       const enContent = document.getElementById('content-en');
       const btnPl = document.getElementById('btn-pl');
       const btnEn = document.getElementById('btn-en');
-      const backText = document.getElementById('back-text');
 
-      if (lang === 'en') {
-        plContent.classList.remove('active');
-        enContent.classList.add('active');
-        btnPl.classList.remove('active');
-        btnEn.classList.add('active');
-        backText.textContent = 'Home';
+      if (targetLang === 'en') {
+        if (plContent) plContent.classList.remove('active');
+        if (enContent) enContent.classList.add('active');
+        if (btnPl) btnPl.classList.remove('active');
+        if (btnEn) btnEn.classList.add('active');
         document.documentElement.lang = 'en';
-        document.title = 'Privacy Policy for Plansy';
+        document.title = 'Privacy Policy — Plansy';
       } else {
-        enContent.classList.remove('active');
-        plContent.classList.add('active');
-        btnEn.classList.remove('active');
-        btnPl.classList.add('active');
-        backText.textContent = 'Strona główna';
+        if (enContent) enContent.classList.remove('active');
+        if (plContent) plContent.classList.add('active');
+        if (btnEn) btnEn.classList.remove('active');
+        if (btnPl) btnPl.classList.add('active');
         document.documentElement.lang = 'pl';
-        document.title = 'Polityka Prywatności dla Plansy';
+        document.title = 'Polityka Prywatności — Plansy';
       }
+
+      try {
+        localStorage.setItem(STORAGE_KEY, targetLang);
+      } catch (e) {}
     }
 
-    // Auto-detect browser language or query parameter (?lang=en)
     (function() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const langParam = urlParams.get('lang');
-      if (langParam === 'en' || (langParam === null && navigator.language && !navigator.language.startsWith('pl'))) {
-        setLanguage('en');
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const langParam = urlParams.get('lang');
+        const savedLang = localStorage.getItem(STORAGE_KEY);
+        const initialLang = (langParam === 'en' || langParam === 'pl') ? langParam : (savedLang || 'pl');
+        setLanguage(initialLang);
+      } catch (e) {
+        setLanguage('pl');
       }
     })();
   </script>
