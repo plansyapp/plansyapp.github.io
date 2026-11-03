@@ -434,6 +434,300 @@
         width: 100%;
         justify-content: space-between;
       }
+      .screenshot-card {
+        width: 220px;
+      }
+      .carousel-track-container {
+        mask-image: linear-gradient(to right, transparent, black 12px, black calc(100% - 12px), transparent 100%);
+        -webkit-mask-image: linear-gradient(to right, transparent, black 12px, black calc(100% - 12px), transparent 100%);
+      }
+    }
+
+    /* Screenshots Showcase Section */
+    .screenshots-section {
+      margin-bottom: 84px;
+      position: relative;
+    }
+
+    .platform-switcher {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .platform-tab {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      font-size: 15px;
+      font-weight: 600;
+      padding: 10px 22px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      user-select: none;
+    }
+
+    .platform-tab:hover {
+      border-color: var(--border-hover);
+      color: var(--text-primary);
+      transform: translateY(-1px);
+    }
+
+    .platform-tab.active {
+      background: linear-gradient(135deg, var(--berry-start), var(--berry-end));
+      border-color: transparent;
+      color: #fff;
+      box-shadow: 0 4px 18px rgba(184, 29, 91, 0.45);
+    }
+
+    .platform-tab .tab-icon {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    .platform-tab .tab-count {
+      font-size: 11.5px;
+      background: rgba(255, 255, 255, 0.18);
+      padding: 2px 7px;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+
+    .carousel-wrapper {
+      position: relative;
+      margin: 0 auto;
+    }
+
+    .carousel-track-container {
+      position: relative;
+      overflow: hidden;
+      padding: 12px 4px 20px;
+      mask-image: linear-gradient(to right, transparent, black 28px, black calc(100% - 28px), transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 28px, black calc(100% - 28px), transparent 100%);
+    }
+
+    .carousel-track {
+      display: none;
+      gap: 20px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding: 8px 16px;
+      cursor: grab;
+    }
+
+    .carousel-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    .carousel-track.active {
+      display: flex;
+    }
+
+    .carousel-track.dragging {
+      cursor: grabbing;
+      scroll-behavior: auto;
+      scroll-snap-type: none;
+    }
+
+    .screenshot-card {
+      flex: 0 0 auto;
+      width: 260px;
+      scroll-snap-align: center;
+      border-radius: 26px;
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-surface);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.2, 0, 0.2, 1), border-color 0.3s;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .screenshot-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 24px 50px rgba(184, 29, 91, 0.3), 0 10px 24px rgba(0, 0, 0, 0.7);
+      border-color: rgba(214, 36, 108, 0.4);
+    }
+
+    .screenshot-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      aspect-ratio: 1290 / 2796;
+      object-fit: cover;
+      pointer-events: none;
+      background: #141017;
+    }
+
+    .carousel-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .carousel-nav-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .carousel-nav-btn:hover {
+      background: var(--bg-surface-elevated);
+      border-color: var(--border-hover);
+      transform: scale(1.05);
+    }
+
+    .carousel-nav-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    .carousel-dots {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      padding: 0;
+    }
+
+    .carousel-dot.active {
+      width: 24px;
+      background: var(--berry-start);
+      box-shadow: 0 0 10px var(--berry-start);
+    }
+
+    /* Lightbox Modal */
+    .screenshot-lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 4, 6, 0.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .screenshot-lightbox.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .lightbox-content {
+      max-width: 90vw;
+      max-height: 90vh;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 85vh;
+      border-radius: 24px;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.95), 0 0 40px rgba(184, 29, 91, 0.25);
+      border: 1px solid var(--border-subtle);
+      object-fit: contain;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -16px;
+      right: -16px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .lightbox-close:hover {
+      transform: scale(1.1);
+      background: var(--berry-start);
+    }
+
+    .lightbox-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: rgba(23, 19, 27, 0.85);
+      border: 1px solid var(--border-subtle);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      backdrop-filter: blur(8px);
+    }
+
+    .lightbox-nav-btn:hover {
+      background: var(--berry-start);
+      transform: translateY(-50%) scale(1.08);
+    }
+
+    .lightbox-nav-btn.prev {
+      left: -60px;
+    }
+
+    .lightbox-nav-btn.next {
+      right: -60px;
+    }
+
+    @media (max-width: 768px) {
+      .lightbox-nav-btn.prev {
+        left: 8px;
+      }
+      .lightbox-nav-btn.next {
+        right: 8px;
+      }
+      .lightbox-close {
+        top: -12px;
+        right: 0;
+      }
     }
   </style>
 </head>
@@ -450,6 +744,10 @@
 
       <div class="nav-right">
         <nav class="nav-links">
+          <a href="#screenshots" class="nav-link">
+            <span class="lang-pl">Aplikacja</span>
+            <span class="lang-en">Screenshots</span>
+          </a>
           <a href="#features" class="nav-link">
             <span class="lang-pl">Funkcje</span>
             <span class="lang-en">Features</span>
@@ -517,8 +815,88 @@
           </a>
         </div>
 
-        <div class="hero-banner-frame">
-          <img src="assets/header.png" alt="Plansy App Store Product Page Header" />
+        <!-- App Promotion Screenshots Showcase -->
+        <div id="screenshots" class="screenshots-section">
+          <div class="platform-switcher">
+            <button class="platform-tab active" onclick="switchPlatform('ios')" id="tab-ios" aria-label="Show iOS screenshots">
+              <svg viewBox="0 0 24 24" class="tab-icon">
+                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.89c.66-.82 1.11-1.95.99-3.09-.96.04-2.13.65-2.81 1.46-.59.69-1.12 1.83-.98 2.94 1.08.08 2.15-.53 2.8-1.31z"/>
+              </svg>
+              <span>iOS</span>
+              <span class="tab-count">8</span>
+            </button>
+            <button class="platform-tab" onclick="switchPlatform('android')" id="tab-android" aria-label="Show Android screenshots">
+              <svg viewBox="0 0 24 24" class="tab-icon">
+                <path d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087L1.337.924zm12.207 10.065l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179l11.04 10.973zm0 2.067l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54-3.23-3.21z"/>
+              </svg>
+              <span>Android</span>
+              <span class="tab-count">6</span>
+            </button>
+          </div>
+
+          <div class="carousel-wrapper">
+            <div class="carousel-track-container">
+              <!-- iOS Gallery -->
+              <div class="carousel-track active" id="gallery-ios">
+                <div class="screenshot-card" onclick="openLightbox('assets/screenshots/ios/ios-1.png', 'Plan zajęć dopasowany do Ciebie')">
+                  <img src="assets/screenshots/ios/ios-1.png" alt="Plansy iOS — Plan zajęć dopasowany do Ciebie" loading="lazy" width="1290" height="2796" />
+                </div>
+                <div class="screenshot-card" onclick="openLightbox('assets/screenshots/ios/ios-2.png', 'Widgety — plan w zasięgu wzroku')">
+                  <img src="assets/screenshots/ios/ios-2.png" alt="Plansy iOS — Widżety na ekranie domowym" loading="lazy" width="1290" height="2796" />
+                </div>
+                <div class="screenshot-card" onclick="openLightbox('assets/screenshots/ios/ios-3.png', 'Teams i Moodle pod jednym kliknięciem')">
+                  <img src="assets/screenshots/ios/ios-3.png" alt="Plansy iOS — Integracja z Teams i Moodle" loading="lazy" width="1290" height="2796" />
+                </div>
+                <div class="screenshot-card" onclick="openLightbox('assets/screenshots/ios/ios-4.png', 'Godziny rektorskie — teraz wiesz pierwszy')">
+                  <img src="assets/screenshots/ios/ios-4.png" alt="Plansy iOS — Godziny rektorskie i dni wolne" loading="lazy" width="1290" height="2796" />
+                </div>
+                <div class="screenshot-card" onclick="openLightbox('assets/screenshots/ios/ios-5.png', 'Powiadomienia pod Twoją kontrolą')">
+                  <img src="assets/screenshots/ios/ios-5.png" alt="Plansy iOS — Inteligentne powiadomienia o zajęciach" loading="lazy" width="1290" height="2796" />
+                </div>
+                <div class="screenshot-card" onclick="openLightbox('assets/screenshots/ios/ios-6.png', 'Notatki do zajęć zawsze pod ręką')">
+                  <img src="assets/screenshots/ios/ios-6.png" alt="Plansy iOS — Prywatne notatki i własne wydarzenia" loading="lazy" width="1290" height="2796" />
+                </div>
+                <div class="screenshot-card" onclick="openLightbox('assets/screenshots/ios/ios-7.png', 'Ukrywanie zajęć — pokaż tylko to co ważne')">
+                  <img src="assets/screenshots/ios/ios-7.png" alt="Plansy iOS — Ukrywanie nieuczęszczanych przedmiotów" loading="lazy" width="1290" height="2796" />
+                </div>
+                <div class="screenshot-card" onclick="openLightbox('assets/screenshots/ios/ios-8.png', 'Mapa kampusu — z nami się nie zgubisz')">
+                  <img src="assets/screenshots/ios/ios-8.png" alt="Plansy iOS — Interaktywna mapa kampusu i sal" loading="lazy" width="1290" height="2796" />
+                </div>
+              </div>
+
+              <!-- Android Gallery -->
+              <div class="carousel-track" id="gallery-android">
+                <div class="screenshot-card" onclick="openLightbox('assets/screenshots/android/android-1.png', 'Plan zajęć dopasowany do Ciebie')">
+                  <img src="assets/screenshots/android/android-1.png" alt="Plansy Android — Plan zajęć dopasowany do Ciebie" loading="lazy" width="1290" height="2796" />
+                </div>
+                <div class="screenshot-card" onclick="openLightbox('assets/screenshots/android/android-2.png', 'Teams i Moodle pod jednym kliknięciem')">
+                  <img src="assets/screenshots/android/android-2.png" alt="Plansy Android — Integracja z Teams i Moodle" loading="lazy" width="1290" height="2796" />
+                </div>
+                <div class="screenshot-card" onclick="openLightbox('assets/screenshots/android/android-3.png', 'Godziny rektorskie — teraz wiesz pierwszy')">
+                  <img src="assets/screenshots/android/android-3.png" alt="Plansy Android — Godziny rektorskie i dni wolne" loading="lazy" width="1290" height="2796" />
+                </div>
+                <div class="screenshot-card" onclick="openLightbox('assets/screenshots/android/android-4.png', 'Powiadomienia pod Twoją kontrolą')">
+                  <img src="assets/screenshots/android/android-4.png" alt="Plansy Android — Inteligentne powiadomienia" loading="lazy" width="1290" height="2796" />
+                </div>
+                <div class="screenshot-card" onclick="openLightbox('assets/screenshots/android/android-5.png', 'Notatki do zajęć zawsze pod ręką')">
+                  <img src="assets/screenshots/android/android-5.png" alt="Plansy Android — Notatki i własne wydarzenia" loading="lazy" width="1290" height="2796" />
+                </div>
+                <div class="screenshot-card" onclick="openLightbox('assets/screenshots/android/android-6.png', 'Ukrywanie zajęć — pokaż tylko to co ważne')">
+                  <img src="assets/screenshots/android/android-6.png" alt="Plansy Android — Ukrywanie nieuczęszczanych przedmiotów" loading="lazy" width="1290" height="2796" />
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-controls">
+              <button class="carousel-nav-btn prev" onclick="scrollScreenshots(-1)" aria-label="Previous screenshot">
+                <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+              </button>
+              <div class="carousel-dots" id="carousel-dots"></div>
+              <button class="carousel-nav-btn next" onclick="scrollScreenshots(1)" aria-label="Next screenshot">
+                <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+              </button>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -741,6 +1119,25 @@
     </footer>
   </div>
 
+  <!-- Screenshot Lightbox Modal -->
+  <div class="screenshot-lightbox" id="screenshot-lightbox" onclick="closeLightbox(event)">
+    <div class="lightbox-content">
+      <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close preview">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <button class="lightbox-nav-btn prev" onclick="navLightbox(-1); event.stopPropagation();" aria-label="Previous image">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+      </button>
+      <img src="" alt="" class="lightbox-img" id="lightbox-img" />
+      <button class="lightbox-nav-btn next" onclick="navLightbox(1); event.stopPropagation();" aria-label="Next image">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+      </button>
+    </div>
+  </div>
+
   <script>
     const STORAGE_KEY = 'plansy_lang';
 
@@ -776,6 +1173,222 @@
       } catch (e) {
         setLanguage('pl');
       }
+    })();
+
+    // Screenshots Carousel & Platform Logic
+    let currentPlatform = 'ios';
+    const platformImages = {
+      ios: [
+        { src: 'assets/screenshots/ios/ios-1.png', alt: 'Plan zajęć dopasowany do Ciebie' },
+        { src: 'assets/screenshots/ios/ios-2.png', alt: 'Widgety — plan w zasięgu wzroku' },
+        { src: 'assets/screenshots/ios/ios-3.png', alt: 'Teams i Moodle pod jednym kliknięciem' },
+        { src: 'assets/screenshots/ios/ios-4.png', alt: 'Godziny rektorskie — teraz wiesz pierwszy' },
+        { src: 'assets/screenshots/ios/ios-5.png', alt: 'Powiadomienia pod Twoją kontrolą' },
+        { src: 'assets/screenshots/ios/ios-6.png', alt: 'Notatki do zajęć zawsze pod ręką' },
+        { src: 'assets/screenshots/ios/ios-7.png', alt: 'Ukrywanie zajęć — pokaż tylko to co ważne' },
+        { src: 'assets/screenshots/ios/ios-8.png', alt: 'Mapa kampusu — z nami się nie zgubisz' }
+      ],
+      android: [
+        { src: 'assets/screenshots/android/android-1.png', alt: 'Plan zajęć dopasowany do Ciebie' },
+        { src: 'assets/screenshots/android/android-2.png', alt: 'Teams i Moodle pod jednym kliknięciem' },
+        { src: 'assets/screenshots/android/android-3.png', alt: 'Godziny rektorskie — teraz wiesz pierwszy' },
+        { src: 'assets/screenshots/android/android-4.png', alt: 'Powiadomienia pod Twoją kontrolą' },
+        { src: 'assets/screenshots/android/android-5.png', alt: 'Notatki do zajęć zawsze pod ręką' },
+        { src: 'assets/screenshots/android/android-6.png', alt: 'Ukrywanie zajęć — pokaż tylko to co ważne' }
+      ]
+    };
+    let currentLightboxIdx = 0;
+
+    function getActiveTrack() {
+      return document.getElementById(currentPlatform === 'ios' ? 'gallery-ios' : 'gallery-android');
+    }
+
+    function switchPlatform(platform) {
+      if (platform !== 'ios' && platform !== 'android') return;
+      currentPlatform = platform;
+
+      const tabIos = document.getElementById('tab-ios');
+      const tabAndroid = document.getElementById('tab-android');
+      const galleryIos = document.getElementById('gallery-ios');
+      const galleryAndroid = document.getElementById('gallery-android');
+
+      if (platform === 'ios') {
+        if (tabIos) tabIos.classList.add('active');
+        if (tabAndroid) tabAndroid.classList.remove('active');
+        if (galleryIos) galleryIos.classList.add('active');
+        if (galleryAndroid) galleryAndroid.classList.remove('active');
+      } else {
+        if (tabAndroid) tabAndroid.classList.add('active');
+        if (tabIos) tabIos.classList.remove('active');
+        if (galleryAndroid) galleryAndroid.classList.add('active');
+        if (galleryIos) galleryIos.classList.remove('active');
+      }
+      renderDots();
+    }
+
+    function scrollScreenshots(direction) {
+      const track = getActiveTrack();
+      if (!track) return;
+      const card = track.querySelector('.screenshot-card');
+      const scrollAmount = card ? (card.offsetWidth + 20) * 1.5 : 300;
+      track.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+    }
+
+    function renderDots() {
+      const dotsContainer = document.getElementById('carousel-dots');
+      if (!dotsContainer) return;
+      const items = platformImages[currentPlatform];
+      dotsContainer.innerHTML = '';
+
+      items.forEach((_, idx) => {
+        const dot = document.createElement('button');
+        dot.className = 'carousel-dot' + (idx === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Go to slide ' + (idx + 1));
+        dot.onclick = () => {
+          const track = getActiveTrack();
+          const cards = track ? track.querySelectorAll('.screenshot-card') : [];
+          if (cards[idx]) {
+            cards[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+          }
+        };
+        dotsContainer.appendChild(dot);
+      });
+      updateActiveDot();
+    }
+
+    function updateActiveDot() {
+      const track = getActiveTrack();
+      if (!track) return;
+      const cards = track.querySelectorAll('.screenshot-card');
+      const dots = document.querySelectorAll('.carousel-dot');
+      if (!cards.length || !dots.length) return;
+
+      const trackCenter = track.getBoundingClientRect().left + track.offsetWidth / 2;
+      let closestIdx = 0;
+      let minDistance = Infinity;
+
+      cards.forEach((card, idx) => {
+        const rect = card.getBoundingClientRect();
+        const cardCenter = rect.left + rect.width / 2;
+        const distance = Math.abs(trackCenter - cardCenter);
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestIdx = idx;
+        }
+      });
+
+      dots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === closestIdx);
+      });
+    }
+
+    function openLightbox(src, alt) {
+      const lightbox = document.getElementById('screenshot-lightbox');
+      const img = document.getElementById('lightbox-img');
+      if (!lightbox || !img) return;
+
+      const items = platformImages[currentPlatform];
+      const foundIdx = items.findIndex(item => item.src === src);
+      currentLightboxIdx = foundIdx >= 0 ? foundIdx : 0;
+
+      img.src = src;
+      img.alt = alt || '';
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox(e) {
+      if (e && e.target && e.target !== document.getElementById('screenshot-lightbox') && !e.target.closest('.lightbox-close')) {
+        return;
+      }
+      const lightbox = document.getElementById('screenshot-lightbox');
+      if (lightbox) {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function navLightbox(direction) {
+      const items = platformImages[currentPlatform];
+      currentLightboxIdx = (currentLightboxIdx + direction + items.length) % items.length;
+      const target = items[currentLightboxIdx];
+      const img = document.getElementById('lightbox-img');
+      if (img && target) {
+        img.src = target.src;
+        img.alt = target.alt;
+      }
+    }
+
+    function setupDragScroll(track) {
+      if (!track) return;
+      let isDown = false;
+      let startX;
+      let scrollLeft;
+      let dragged = false;
+
+      track.addEventListener('mousedown', (e) => {
+        isDown = true;
+        dragged = false;
+        track.classList.add('dragging');
+        startX = e.pageX - track.offsetLeft;
+        scrollLeft = track.scrollLeft;
+      });
+
+      track.addEventListener('mouseleave', () => {
+        isDown = false;
+        track.classList.remove('dragging');
+      });
+
+      track.addEventListener('mouseup', () => {
+        isDown = false;
+        track.classList.remove('dragging');
+      });
+
+      track.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - track.offsetLeft;
+        const walk = (x - startX) * 1.4;
+        if (Math.abs(walk) > 4) dragged = true;
+        track.scrollLeft = scrollLeft - walk;
+      });
+
+      track.querySelectorAll('.screenshot-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+          if (dragged) {
+            e.stopPropagation();
+            e.preventDefault();
+          }
+        }, true);
+      });
+
+      let scrollTimeout;
+      track.addEventListener('scroll', () => {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(updateActiveDot, 60);
+      }, { passive: true });
+    }
+
+    document.addEventListener('keydown', (e) => {
+      const lightbox = document.getElementById('screenshot-lightbox');
+      if (lightbox && lightbox.classList.contains('active')) {
+        if (e.key === 'Escape') closeLightbox();
+        else if (e.key === 'ArrowLeft') navLightbox(-1);
+        else if (e.key === 'ArrowRight') navLightbox(1);
+      }
+    });
+
+    (function initShowcase() {
+      if (/Android/i.test(navigator.userAgent)) {
+        switchPlatform('android');
+      } else {
+        switchPlatform('ios');
+      }
+
+      const trackIos = document.getElementById('gallery-ios');
+      const trackAndroid = document.getElementById('gallery-android');
+      setupDragScroll(trackIos);
+      setupDragScroll(trackAndroid);
     })();
   </script>
 </body>
